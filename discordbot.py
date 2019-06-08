@@ -7,8 +7,13 @@ token = os.environ['DISCORD_BOT_TOKEN']
 
 
 @bot.event
-async def on_command_error(ctx, error):
-    await ctx.send(str(error))
+async def on_command(command):
+    try:
+        if message.author.bot:
+            return
+        await bot.process_commands(message)
+    except Exception:
+    await message.channel.send(f'```_n{traceback.format_exc()}
 
 
 @bot.command()
